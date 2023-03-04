@@ -70,7 +70,7 @@ const crawlPage = async (url, depth) => {
 const crawlQueue = async () => {
     while (queue.length > 0) {
         const item = queue.shift();
-        await sleep(2000);
+        await sleep(2000);  //during testing, I was getting blocked by the server, so I added a sleep to avoid that
         await crawlPage(item.url, item.depth);
     }
 
