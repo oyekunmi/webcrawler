@@ -6,9 +6,10 @@ const fs = require('fs');
 
 const queue = [];
 
-const startUrl = 'https://group.jumia.com';
-const maxDepth = 1;
+const startUrl = process.argv[2];
+const maxDepth = process.argv[3];
 
+console.log(process.argv);
 
 const visited = new Set();
 
@@ -17,10 +18,9 @@ const output = {
 };
 
 const crawl = (url, depth) => {
-    console.log("inside crawl", url, depth);
     visited.add(url);
 
-    if (depth < maxDepth) {
+    if (depth <= maxDepth) {
         queue.push({
             url: url,
             depth: depth
@@ -43,7 +43,11 @@ const crawlPage = async (url, depth) => {
     const images = $('img');
 
     $(images).each(function (_i, image) {
+
         const imageUrl = $(image).attr('src');
+
+        console.log("crawlPage", imageUrl, url, depth);
+
 
         const result = {
             imageUrl: imageUrl,

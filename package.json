@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js https://talabat.com 1",
     "local": "nodemon bin/start.js"
   },
   "dependencies": {
